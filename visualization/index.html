@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="felipeares">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <title>Qué se Dice</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="template/css/freelancer.min.css" rel="stylesheet">
+	
+	<!-- Custom styles -->
+	<link href="css/style.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar-shrink navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Quesedice</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#grafico">Gráfico</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#explicacion">¿Cómo Funciona?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Portfolio Grid Section -->
+    <section id="grafico">
+      <div class="container">
+        <div class="row">
+	        <h2 class="text-center onerow">¿Qué nos dicen los medios?</h2>
+			<div id="graph-col" class="col-lg-8">
+				<div id="moreinfo-container">
+					<a class="portfolio-link" href="#newsModal" data-toggle="modal">
+						¡Clic Aquí! Ver noticias relacionadas a <span id="selected-word">elecciones</span>
+					</a>
+				</div>
+				<div id="outer-container">
+				  <div id="prev-loader" class="loader">Loading...</div>
+				  <div id="graph-container"></div>
+				</div>
+				<div id="sites-container"></div>
+				<div id="selector-container">
+					<a href="javascript:" class="selector-button" data-filter="low">Baja</a>
+					<a href="javascript:" class="selector-button selected" data-filter="medium">Media</a>
+					<a href="javascript:" class="selector-button" data-filter="high">Alta</a>
+					<a href="javascript:" class="selector-button" data-filter="danger">Muy Alta</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
+		        <h2 class="text-center tworow">¿Qué nos dicen los medios?</h2>
+		        <hr class="star-primary tworow">
+				<p id="act-time"></p>
+				<p style="text-align:center;" class="main-desc">Estás viendo el trabajo de un simple robot que se dedica diáriamente a leer los principales medios digitales en Chile. <br><br> Haz clic sobre los distintos puntos del gráfico para ver el detalle de las conexiones de cada palabra. ¡También podrás ver el detalle de todas las noticias relacionadas!</p>
+			</div>
+		</div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="success" id="explicacion">
+      <div class="container">
+        <h2 class="text-center">¿Cómo Funciona?</h2>
+        <hr class="star-light">
+        <div class="row">
+          <div class="col-lg-6 ml-auto">
+            <p>Cada dos horas un pequeño insecto digital se encarga de descargar y mapear algunos de  <a style="color:#fff; text-decoration: underline;" href="#sitesModal" data-toggle="modal">los principales medios de noticias digitales en Chile</a>, obteniendo de cada noticia su posición en la pantalla, el tamaño de la letra, las etiquetas de html y la relación entre las palabras.<br><br> El programa está desarrollado en Python y corre automáticamente sobre una máquina Linux en Amazon, utilizando las regalías de Selenium y Chrome. Todo el resto que ves es simple y puro Javascript</p>
+          </div>
+          <div class="col-lg-6 mr-auto">
+            <p>Cuando abres tu explorador y visitas esta página, tu computador comienza a procesar la información de nuestro scraper, calculando los pesos y conecciones relativas a cada palabra, obteniendo un gráfo de malla como el que puedes ver en la visualización de arriba (Agradeciendo el enorme trabajo puesto en la librería sigma.js).<br><br> El algoritmo filtra y deja pasar sólo las noticias mas relevantes según ciertos parámetros (Sino verías una gran nube densa con miles de palabras).</p>
+          </div>
+          <div class="col-lg-8 mx-auto text-center" style="display:none;">
+            <a href="#" class="btn btn-lg btn-outline">
+              <i class="fa fa-download"></i>
+              Download Theme
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="text-center">Contacto</h2>
+        <hr class="star-primary">
+		
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <p>Si tienes alguna idea de otros proyectos que pudiésemos hacer con esta información, o te interesaría obtener la base de datos que estamos generando o simplemente quieres conversar envíame un correo a <strong>fares.datawizard<i class="fa fa-at"></i>gmail<i class="fa fa-dot">.</i>com</strong></p>
+			<p>Hoy estoy enfocado 100% a la extracción automatizada (scraping/web spyders) de datos desde sitios web públicios (y no tan públicos) para su posterior análisis, construcción de modelos y visualización.</p>
+			<ul id="felipe-info">
+				<li><i class="fa  fa-external-link-square"></i> <a href="https://felipeares.github.io/">felipeares.github.io</a></li>
+				<li><i class="fa fa-github-square"></i> <a href="https://github.com/felipeares">github.com/felipeares</a></li>
+				<li><i class="fa fa-linkedin-square"></i> <a href="https://www.linkedin.com/in/felipe-ares-a5a7a516">linkedin.com/in/felipe-ares-a5a7a516</a></li>
+			</ul>
+          </div>
+        </div>        
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center" id="bottomFooter">
+      <div class="footer-above">
+        <div class="container">
+          <div class="row" style="text-align:left;">
+            <div class="footer-col col-md-4">
+              <h3>Librerías</h3>
+              <p>
+				  Selenium<br>
+				  Sigma.js<br>
+				  Bootstrap<br>
+				  JQuery<br><br>
+				  Freelancer (Html5 Template)<br>
+			  </p>
+            </div>
+            <div class="footer-col col-md-4">
+              <h3>Fuentes</h3>
+              <p id="medios-info-footer"> 
+				  <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>
+			  </p>
+            </div>
+            <div class="footer-col col-md-4">
+              <h3>Otros</h3>
+              <p>
+              	
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-below">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+				<i class="fa fa-at"></i> felipeares
+            </div>
+          </div> 
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top d-lg-none">
+      <a class="btn btn-primary js-scroll-trigger" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+
+    <!-- News Modals -->
+    <div class="portfolio-modal modal fade" id="newsModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 mx-auto">
+                <div class="modal-body">
+                  <h3>Noticias Relacionadas a "<span id="modal-word-selected"></span>"</h3>
+                  <hr class="star-primary">
+
+				  <div id="modal-news-container"></div>
+                  
+                  <button class="btn btn-success" type="button" data-dismiss="modal">
+					  <i class="fa fa-times"></i>
+					  Cerrar
+				  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	<!-- Sites Modal -->
+    <div class="portfolio-modal modal fade" id="sitesModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 mx-auto">
+                <div class="modal-body">
+                  <h3>Medios Digitales Escaneados</h3>
+                  <hr class="star-primary">
+
+                  <ul class="list-inline item-details" id="medios-info"></ul>
+                  
+                  <button class="btn btn-success" type="button" data-dismiss="modal">
+					  <i class="fa fa-times"></i>
+					  Cerrar
+				  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="template/vendor/jquery/jquery.min.js"></script>
+    <script src="template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="template/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="template/js/jqBootstrapValidation.js"></script>
+    <script src="template/js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="template/js/freelancer.js"></script>
+	
+	<!-- The good stuff -->
+	<script src="js/sigma.min.js"></script>
+	<script src="js/sigma_plugins/sigma.layout.forceAtlas2.min.js"></script>
+	<script src="js/quesedice.js"></script>
+
+  </body>
+
+</html>
