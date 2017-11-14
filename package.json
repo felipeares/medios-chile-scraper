@@ -1,7 +1,7 @@
 {
   "name": "medios-chile-scraper",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple web scraper and visualization page displaying the most important words of the moment found in Chile's mainstream news sites",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
