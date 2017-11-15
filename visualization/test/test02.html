@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Qué se Dice - Scrappy</title>
+	
+    <style>
+		div {
+			position: absolute;
+			padding: 1px;
+			border: solid 1px #CCC;
+			float:left;
+		}
+		header#header {
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			overflow:auto;
+			padding:5px;
+			opacity:0.8;
+			background: #000;
+			color: #fff;
+			z-index: 100000;
+		}
+		header#header a {
+			float:left;
+			display:block;
+			margin-right:15px;
+			color:#fff;
+			width: 100px;
+			padding: 5px;
+			border: solid #FFF 1px;
+			text-align: center;
+		}
+		header#header a.selected {
+			background-color: #FFF;
+			color: #000;
+		}
+		#error_message {
+			float:right;
+			background: orangered;
+			color:#FFF;
+			padding: 5px;
+			margin: 0px;
+		}
+		#top_filter {
+			width:100%;
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			background:red;
+			opacity:0.1;
+		}
+    </style>
+
+  </head>
+
+  <body id="page-top">
+	<header id="header">
+		<p id="error_message"></p>
+	</header>
+    
+	<section id="container"></section>
+	
+	<section id="top_filter"></section>
+
+    <script src="../public/template/vendor/jquery/jquery.min.js"></script>
+	<script>
+		const site_specs = {
+	      'em': {
+	        'top_filter': 160
+	      },
+	      'lt': {
+	        'top_filter': 290
+	      },
+	      'bb': {
+	        'top_filter': 300
+	      },
+	      'mo': {
+	        'top_filter': 360
+	      },
+	      'co': {
+	        'top_filter': 300
+	      },
+	      '24': {
+	        'top_filter': 200
+	      }
+	    };
+		
+		let jsonresult;
+		const url = 'test/data.json';
+		// const url = "data/data.json";
+		
+	    $.getJSON(url, function(result){
+			jsonresult = result;
+			jsonresult.sites.forEach(function(item, index) {
+				$('#header').prepend('<a class="menu_item" id="item_'+index+'" href="javascript:loadPage('+index+')">'+item.name+'</a>');
+			});
+			loadPage(0);
+		});
+		function loadPage(site_index) {
+			$('#container').html('');
+			$('#error_message').text(jsonresult.sites[site_index].child_count+' nodos. Cargado en '+jsonresult.sites[site_index].execution_time+' segundos');
+			
+			$('.menu_item').removeClass('selected');
+			$('#item_'+site_index).addClass('selected');
+			
+			$('#top_filter').height(site_specs[jsonresult.sites[site_index].abr].top_filter);
+			
+			site_data = jsonresult.sites[site_index].data
+			site_data.forEach(function(item, index) {
+				$('#container').append('<div style="font-size:'+item['font-size']+'px; height:'+item['height']+'px; width:'+item['width']+'px; top:'+item['y']+'px; left:'+item['x']+'px;">'+item.text+'</div>');
+			});
+		}
+	</script>
+
+  </body>
+
+</html>

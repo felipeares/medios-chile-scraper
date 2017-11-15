@@ -418,8 +418,7 @@ function calculatePercentile(array, percentile) {
 }
 
 function loadGraph() {
-	const url = 'https://s3-us-west-2.amazonaws.com/medios-scraper/latest/data.json?v='+Math.random();
-	// const url = "data/data.json";
+	const url = "test/data.json";
     $.getJSON(url, function(jsonresult){
 		originaldata = JSON.parse(JSON.stringify(jsonresult));
 		jsonresult.sites.forEach(function(item, index) {
@@ -427,7 +426,7 @@ function loadGraph() {
 		});	
 		loadSitesButtons()
 		loadVisualization();	
-		updateTime();		
+		updateTime();	
 	});		 
 }
 
