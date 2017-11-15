@@ -1,1 +1,4 @@
-A simple web scraper and visualization page displaying the most important words of the moment found in Chile's mainstream news sites
+Welcome! Here you'll find:
+
+1.- A selenium based web scraper of Chile's mainstream news sites
+2.- A html bootstrap/sigmajs visualization graph displaying the most important news, words and their connections
