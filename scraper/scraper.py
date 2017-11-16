@@ -39,7 +39,6 @@ output_dict = {
     'execution_time': '', # saved at the end
     'webdriver': 'chrome',
     'display_size': display_size,
-    'window_size': window_size,
     'error_log': [], # saved on execution
     'sites': [] # saved on execution
 }
