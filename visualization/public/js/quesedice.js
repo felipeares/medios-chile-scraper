@@ -27,6 +27,7 @@ sigma.classes.graph.addMethod('neighbors', function(nodeId) {
 
 loadGraph();
 
+//TODO ()=>function implemented, change to function() {} for ie10-11
 function preparingWords(site) {
 	// First, clean, create words array and calculate box weight
 	return site.data.map((box, index) => {
@@ -98,6 +99,7 @@ function getLocationWeight(site, y) {
 	return 0;
 }
 
+//TODO ()=>function implemented, change to function() {} for ie10-11
 function getTagsWeight(tags) {
 	const tag_score = {
       'a': 0.3,
@@ -111,6 +113,7 @@ function getTagsWeight(tags) {
     }, 0);
 }
 
+//TODO ()=>function implemented, change to function() {} for ie10-11
 function filterBoxes(boxes, threshold) {
 	return boxes.filter((box) => {
 		return box.weight > threshold;
