@@ -27,10 +27,9 @@ sigma.classes.graph.addMethod('neighbors', function(nodeId) {
 
 loadGraph();
 
-//TODO ()=>function implemented, change to function() {} for ie10-11
 function preparingWords(site) {
 	// First, clean, create words array and calculate box weight
-	return site.data.map((box, index) => {
+	return site.data.map(function(box, index) {
 		// Remove unwanted characters
 		box.text = box.text.replace(/(:|\(|\)|;|\.|,|\]|\[|¿|!|¡|·|\+|-|_|\*|“|'|"|\$|\?)/igm, '').toLowerCase();
 		// Repeated words cause duplicate weights
@@ -42,7 +41,7 @@ function preparingWords(site) {
 		' ella la los las ellos ellas él élla nosotros vosotros un una del y al o u' +
 		' este que del es se su | más lo qué está tu le están como cómo emol fue cuál' +
 		' son era todo ver mostrador cooperativa quien quién aun aún the of hay pero'.split(' ');
-		box.words = box.text.split(' ').filter((word) => {
+		box.words = box.text.split(' ').filter(function(word) {
 			return unwanted_words.indexOf(word) === -1 && isNaN(word);
 		});
 		// Calculate Weights
@@ -99,7 +98,6 @@ function getLocationWeight(site, y) {
 	return 0;
 }
 
-//TODO ()=>function implemented, change to function() {} for ie10-11
 function getTagsWeight(tags) {
 	const tag_score = {
       'a': 0.3,
@@ -108,14 +106,13 @@ function getTagsWeight(tags) {
       'h3': 0.3,
       'h4': 0.1
     };
-    return tags.split(' ').reduce((score, tag, index) => {
+    return tags.split(' ').reduce(function(score, tag, index) {
       return score += (tag_score[tag] ? tag_score[tag] : 0);
     }, 0);
 }
 
-//TODO ()=>function implemented, change to function() {} for ie10-11
 function filterBoxes(boxes, threshold) {
-	return boxes.filter((box) => {
+	return boxes.filter(function(box) {
 		return box.weight > threshold;
 	});
 }
@@ -454,7 +451,7 @@ function loadSitesButtons() {
 		}
 		else {
 			filtered_sites.splice(filtered_sites.indexOf(site_selected), 1);
-			filtered_sites.filter((site) => {
+			filtered_sites.filter(function(site) {
 				return site !== site_selected;
 			});
 			$(this).addClass('selected');
