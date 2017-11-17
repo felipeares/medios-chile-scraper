@@ -4,7 +4,7 @@
   "description": "A simple web scraper and visualization page displaying the most important words of the moment found in Chile's mainstream news sites",
   "main": "index.js",
   "scripts": {
-	"start": "node index.js",
+    "start": "node index.js",
     "deploy": "aws s3 sync ./visualization/ s3://quesedice.cl/ --exclude '*.DS_Store'"
   },
   "repository": {

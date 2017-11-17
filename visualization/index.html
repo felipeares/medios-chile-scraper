@@ -90,6 +90,11 @@
     <section id="grafico">
       <div class="container">
         <div class="row">
+			
+			<div class="alert alert-block alert-danger ie10alert">
+				<strong>¿Internet Explorer 10?</strong> Tu explorador, que está un poco viejo, no permite visualizar el asombroso gráfico que tenemos para tí. ¿Has pensado en cambiarte a un explorer mas nuevo? ¿O a Chrome, Firefox, Safari, Edge, Opera....? Vuelve a esta página con alguno de estos otros, te esperamos!
+			</div>
+			
 	        <h2 class="text-center onerow">¿Qué nos dicen los medios?</h2>
 			<div id="graph-col" class="col-lg-8">
 				<div id="moreinfo-container">
@@ -289,7 +294,16 @@
 	<!-- The good stuff -->
 	<script src="public/js/sigma.min.js"></script>
 	<script src="public/js/sigma_plugins/sigma.layout.forceAtlas2.min.js"></script>
-	<script src="public/js/quesedice.js"></script>
+	
+	<!-- My Code -->
+	<script src="public/js/quesedice_ie10.js"></script>
+	
+	<!-- IE10 Alert -->
+	<script>
+		if (navigator.userAgent.match('MSIE 10.0;')) {
+		  $('.ie10alert').show('slow');
+		}
+	</script>
 
   </body>
 

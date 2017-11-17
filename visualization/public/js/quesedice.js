@@ -475,7 +475,7 @@ function loadModalWithNews() {
 }
 
 function updateTime() {
-	let date = new Date(originaldata.date_finished);
+	let date = new Date(originaldata.date_finished.replace(' ','T'));
 	let now = new Date();
 	$('#act-time').html('<i class="fa fa-clock-o"></i> Actualizado hace ' + Math.round((now-date)/1000/60) + ' minutos');
 }
