@@ -1,6 +1,6 @@
 """
 @felipeares
-This script runs every hour in an Amazon AWS EC2 ubuntu instance and load de scanned data into an S3 public reading bucket (with some historic files). It also saves into the EC2 instance a full screen shot of the last scan and some always usefull logs.
+This script runs every hour in an Amazon AWS EC2 ubuntu instance and load de scanned data into an S3 public reading bucket (with some historic files). It also saves into the EC2 instance a full screen shot of the last scan and some always usefull logs. It takes arround 115 (+20 for banners for each site) seconds mainly waiting for each site to load into the chrome browser.
 """
 
 import time
@@ -66,6 +66,7 @@ opts.add_argument("--disable-flash-3d")
 opts.add_argument("--disable-flash-stage3d")
 opts.add_argument("user-agent=curl/7.35.0")
 opts.add_argument("--kiosk");
+opts.add_argument("--incognito");
 pt('Browser Options')
 
 # start browser
@@ -90,13 +91,13 @@ for site in sites:
     
     try:
         # get site
-        browser.set_page_load_timeout(60)
+        browser.set_page_load_timeout(120)
         browser.get(site['url'])
         pt('Get Site ' + site['name'])
         
-        # testing wait
-        time.sleep(1)
-        pt('Just Waiting')
+        # wait for some banner to fade out
+        time.sleep(20)
+        pt('Waiting for banners')
         
         # execute main javascript
         sites_data[site['abr']]['data'] = json.loads(browser.execute_script("var __rfres=function(){return allnodes=function(){const a=this;this.savedElements=[],this.saveElementAndContinueWithChilds=function(b,c){if(!(-1<['STYLE','SCRIPT','IFRAME','IMG'].indexOf(b.tagName)))if(3===b.nodeType&&0<b.wholeText.trim().length)a.saveElementToArray(b,c);else if(1===b.nodeType&&'none'!==window.getComputedStyle(b).display)for(let d=0;d<b.childNodes.length;d++)a.saveElementAndContinueWithChilds(b.childNodes[d],c+' '+b.tagName.toLowerCase())},this.saveElementToArray=function(b,c){const d=b.parentNode.getBoundingClientRect(),e=window.getComputedStyle(b.parentNode);a.savedElements.push({length:b.wholeText.trim().length,text:b.wholeText.trim(),'font-size':+e['font-size'].replace('px',''),height:d.height,width:d.width,x:d.left+ +e['padding-left'].replace('px',''),y:d.top+ +e['padding-top'].replace('px',''),tag:b.parentNode.tagName.toLowerCase(),'parent-tags':c,site:''})},this.saveElementAndContinueWithChilds(document.body,'')},new allnodes().savedElements}; return JSON.stringify(__rfres());"))
@@ -110,7 +111,14 @@ for site in sites:
         pt('Save Site Data ' + site['name'])
                 
     except TimeoutException as ex:
-        pt('TIMEOUT ERROR ' + site['name'])
+        pt('PAGE TimeoutException ERROR ' + site['name'])
+    except WebDriverException:
+        pt('PAGE WebDriverException ERROR ' + site['name'])
+        #restart browser
+        browser = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=opts)
+        pt('RE-Start Browser')
+    except:
+        pt('PAGE WILDCARD ERROR ' + site['name'])
         
     if sites_data[site['abr']]['child_count'] > 0:
         # save screenshot
@@ -118,7 +126,12 @@ for site in sites:
             browser.get_screenshot_as_file('/home/ubuntu/mkprojects/p3test/images/' + site['abr'] + '.png')
             pt('Save Screenshot ' + site['name'])
         except WebDriverException:
-            pt('IMG ERROR ' + site['name'])
+            pt('IMG WebDriverException ERROR ' + site['name'])
+            #restart browser
+            browser = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=opts)
+            pt('RE-Start Browser')
+        except:
+            pt('IMG WILDCARD ERROR ' + site['name'])
 
 # save date_finished and execution time
 output_dict['date_finished'] = str(datetime.now(timezone('America/Santiago')).strftime("%Y-%m-%d %H:%M:%S"))
@@ -149,9 +162,14 @@ pt('Saved data to Amazon')
 
 
 # close browser
-browser.close()
-browser.quit()
-pt('Close Browser')
+try:
+    browser.close()
+    browser.quit()
+    pt('Close Browser')
+except WebDriverException:
+    pt('Close Browser WebDriverException ERROR')
+except:
+    pt('Close Browser WILDCARD ERROR')
 
 # close display
 display.popen.kill()
